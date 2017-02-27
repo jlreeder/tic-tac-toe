@@ -94,9 +94,23 @@ class View {
   bindEvents() {}
 
   makeMove($square) {
-    let pos = $square.attr("data");
-    $square.append("X");
-    this.game.playMove(pos);
+    let pos = $square.attr("data").split(",");
+    let posNum1 = Number(pos[0]);
+    let posNum2 = Number(pos[1]);
+    let mark = this.game.currentPlayer;
+    let posArr = [posNum1,posNum2];
+
+    if (this.game.board.isEmptyPos(posArr)){
+      $square.append(mark);
+      this.game.playMove(posArr);
+
+      if (this.game.isOver()) {
+        alert(`Congratulations ${this.game.currentPlayer}!`);
+      }
+
+    } else {
+      alert("Invalid move");
+    }
   }
 
   setupBoard() {
@@ -112,8 +126,8 @@ class View {
           $(this).css("background-color", "grey");
         });
 
-      $li.click( function() {
-        $(this).append($li.attr("data"));
+      $li.click(() => {
+        this.makeMove($li);
       });
 
       let col = i % 3;
