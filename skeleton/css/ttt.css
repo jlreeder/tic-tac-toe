@@ -1,0 +1,11 @@
+ul{
+  max-width: 300px;
+}
+
+li {
+  background-color: grey; 
+  border: 2px solid black;
+  float: left;
+  list-style: none;
+  padding: 40px;
+}
