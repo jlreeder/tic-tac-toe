@@ -3,7 +3,7 @@ ul{
 }
 
 li {
-  background-color: grey; 
+  background-color: grey;
   border: 2px solid black;
   float: left;
   list-style: none;
