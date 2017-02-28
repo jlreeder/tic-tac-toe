@@ -8,15 +8,12 @@ class View {
   bindEvents() {}
 
   makeMove($square) {
-    let pos = $square.attr("data").split(",");
-    let posNum1 = Number(pos[0]);
-    let posNum2 = Number(pos[1]);
     let mark = this.game.currentPlayer;
-    let posArr = [posNum1,posNum2];
+    let pos = $square.data("data-pos");
 
-    if (this.game.board.isEmptyPos(posArr)){
+    if (this.game.board.isEmptyPos(pos)){
       $square.append(mark);
-      this.game.playMove(posArr);
+      this.game.playMove(pos);
 
       if (this.game.isOver()) {
         alert(`Congratulations ${this.game.currentPlayer}!`);
@@ -47,7 +44,7 @@ class View {
       let col = i % 3;
       let row = Math.floor(i / 3);
 
-      $li.attr("data",[col,row]);
+      $li.data("data-pos",[col,row]);
 
       $ul.append($li);
     }
